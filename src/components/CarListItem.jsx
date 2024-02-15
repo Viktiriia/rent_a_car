@@ -1,33 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CarListItem = ({id, year, make, model, type, img, description, fuelConsumption, engineSize, accessories, functionalities, 
-  rentalPrice, address, rentalConditions, mileage }) => {
-   return (
+const CarListItem = ({
+  car,
+  id,
+  year,
+  make,
+  model,
+  type,
+  img,
+  description,
+  fuelConsumption,
+  engineSize,
+  accessories,
+  functionalities,
+  rentalPrice,
+  address,
+  rentalCompany,
+  rentalConditions,
+  mileage,
+}) => {
+  return (
+   
     <li>
-      <Link to={`/car-details/${id}`}>
-      <img
-        src={img }
-        width={200}
-        height={300}
-        alt={make}
-      />
-       
-        <h2>{make} {model}, {year}</h2>
-        <p>{address} | Id: {id} | Type: {type}
-        Fuel Consumption: {fuelConsumption} | Engine Size: {engineSize}</p>
-        <h3>{description}</h3>
-        <h3> Accessories and Functionalities</h3>
-        <p>{accessories}{functionalities}</p>
-        <h3>Rental Conditions</h3>
-        <p>{rentalConditions}
-       Mileage: {mileage}
-       Price: {rentalPrice}</p>
+      <img src={img} width={200} height={300} alt={make} />
 
-       <button type='submit'>Rental car</button>
+      <h2>
+        {make} {model}, {year} {rentalPrice}
+      </h2>
+      <p>
+        {address} | {rentalCompany}
+        {type} | {id} | {functionalities}
+      </p>
+      <Link to={`/car-details/${id}`}>
+        <button type="submit">learn more</button>
       </Link>
     </li>
   );
 };
 
-export default CarListItem;   
+export default CarListItem;
+

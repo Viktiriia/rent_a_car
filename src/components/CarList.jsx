@@ -10,13 +10,18 @@ const CarList = ({ cars }) => {
         cars.map(car => {
           return (
             <CarListItem
-         img={car.img}
-         make={car.make} 
-         model={car.model} 
-         year={car.year}
-          />
-
-            
+            key={car.id}
+              img={car.img}
+              make={car.make}
+              model={car.model}
+              year={car.year}
+              rentalPrice={car.rentalPrice}
+              address={car.address}
+              rentalCompany={car.rentalCompany}
+              type={car.type}
+              id={car.id}
+              functionalities={car.functionalities}
+            />
           );
         })}
     </ul>

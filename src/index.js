@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+  <BrowserRouter basename='/rent_a_car'>
     <Provider store={store}>
       <App />
       <ToastContainer />

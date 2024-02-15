@@ -11,8 +11,7 @@ export const fetchCars = async () => {
 };
 
 export const findCarById = async carId => {
-  const { data } = await carsInstance.get(`/car/${carId}`);
-  console.log(carId)
+  const { data } = await carsInstance.get(`/car/?id=${carId}`);
   return data;
 };
 
