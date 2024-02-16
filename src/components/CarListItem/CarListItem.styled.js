@@ -31,9 +31,23 @@ export const StyledDiv = styled.div`
   }
   .heart {
     position: absolute;
-    fill: white;
     top: 14px;
     right: 14px;
+    stroke: white;
+    transition: fill 350ms, stroke 350ms;
+    &:hover,
+    &:focus {
+      fill: blue;
+      stroke: blue;
+    }
+    &.favored {
+      fill: blue;
+      stroke: blue;
+      &:hover,
+      &:focus {
+        stroke: white;
+      }
+    }
   }
   .title-wrapper {
     display: flex;
@@ -53,6 +67,7 @@ export const StyledDiv = styled.div`
     flex-wrap: wrap;
     gap: 6px;
     font-size: 12px;
+    margin-bottom: 17px;
 
   }
 `;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import CarList from 'components/CarList/CarList';
-import SearchCarForm from 'components/SearchCarForm';
+import SearchCarForm from 'components/SearchCarForm/SearchCarForm.jsx';
 import ErrorMessage from 'components/ErrorMessage';
 import Loader from 'components/Loader';
 import { fetchCars } from 'services/api';
+import { ButtonLoadMore} from '../App.styled';
 
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
@@ -38,7 +39,7 @@ const CarsPage = () => {
       <SearchCarForm />
       <CarList cars={cars.slice(0, visibleCars)} />
       {cars.length > visibleCars && (
-        <button onClick={handleLoadMore}>Load more</button>
+        <ButtonLoadMore onClick={handleLoadMore}>Load more</ButtonLoadMore>
       )}
     </div>
   );

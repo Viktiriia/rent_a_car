@@ -10,7 +10,8 @@ const CarMakeDropdown = ({ selectedMake, handleMakeChange }) => {
 
   return (
     <div>
-      <label htmlFor="carMake">Choose a car make:</label>
+      <label htmlFor="carMake">
+        <p>Choose a car make:</p>
       <select id="carMake" value={selectedMake} onChange={handleMakeChange}>
         <option value="">Enter the text</option>
         {carMakes.map((make, index) => (
@@ -19,6 +20,7 @@ const CarMakeDropdown = ({ selectedMake, handleMakeChange }) => {
           </option>
         ))}
       </select>
+      </label>
     </div>
   );
 };

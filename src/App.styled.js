@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 export const StyledAppContainer = styled.div`
   max-width: 1200px;
   width: 100%;
@@ -44,6 +43,25 @@ export const StyledAppContainer = styled.div`
   }
 
   .header-link {
+  }
+`;
+export const ButtonLoadMore = styled.button `
+ display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 10px 20px;
+  color: #0056b3;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: #0056b3;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
