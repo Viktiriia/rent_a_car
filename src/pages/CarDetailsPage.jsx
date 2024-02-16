@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 import Loader from 'components/Loader';
 import ErrorMessage from 'components/ErrorMessage';
-import DescriptionCar from 'components/DescriptionCar'; 
+import DescriptionCar from 'components/DescriptionCar/DescriptionCar'; 
 
 const CarDetailsPage = () => {
   const { carId } = useParams();
@@ -36,17 +36,17 @@ const CarDetailsPage = () => {
 
   return (
     <div>
-      <Link to="/cars">Go Back</Link>
+      <Link to="/catalog">Go Back</Link>
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
       {carDetails !== null && (
-        <div>
-          {carDetails?.map(key => (
-           
-            <DescriptionCar car={key} />
-          ))}
-        </div>
-      )}
+  <div>
+    {carDetails.map(car => (
+      <DescriptionCar key={car.id} car={car} />
+    ))}
+  </div>
+)}
+        
     </div>
   );
 };

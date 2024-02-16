@@ -14,16 +14,40 @@ code {
     monospace;
 }
 
-*,
-*::before,
-*::after {
+
+
+*{
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-h1,
-h2,
-h3,
-h4,
+*:hover,
+*:focus,
+*:active {
+  cursor: inherit;
+}
+
+
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+
 p {
   margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
 }

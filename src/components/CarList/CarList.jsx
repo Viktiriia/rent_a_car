@@ -1,13 +1,14 @@
 import React from 'react';
-import CarListItem from './CarListItem';
+import CarListItem from '../CarListItem/CarListItem';
+import {Ul} from './CarList.styled'
 
 const CarList = ({ cars }) => {
-  const showCars = Array.isArray(cars) && cars.length;
+   const showCars = Array.isArray(cars) && cars.length;
 
   return (
-    <ul className="postList">
-      {showCars &&
-        cars.map(car => {
+    <Ul>
+       {showCars && 
+    cars.map(car => {
           return (
             <CarListItem
             key={car.id}
@@ -24,7 +25,9 @@ const CarList = ({ cars }) => {
             />
           );
         })}
-    </ul>
+    </Ul>
   );
 };
 export default CarList;
+
+

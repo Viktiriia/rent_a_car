@@ -8,6 +8,7 @@ import { StyledAppContainer, StyledNavLink } from 'App.styled';
 const HomePage = lazy(() => import('pages/HomePage'));
 const CarsPage = lazy(() => import('pages/CarsPage'));
 const CarDetailsPage = lazy(() => import('pages/CarDetailsPage'));
+const FavoritePage = lazy(() => import('pages/FavoritePage'));
 
 export const App = () => {
   return (
@@ -17,8 +18,11 @@ export const App = () => {
           <StyledNavLink className="header-link" to="/">
             Home
           </StyledNavLink>
-          <StyledNavLink className="header-link" to="/cars">
-            Cars
+          <StyledNavLink className="header-link" to="/catalog">
+            Catalog
+          </StyledNavLink>
+          <StyledNavLink className="header-link" to="/favorite">
+          Favorite
           </StyledNavLink>
         </nav>
       </header>
@@ -26,8 +30,10 @@ export const App = () => {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/cars" element={<CarsPage />} />
+          <Route path="/catalog" element={<CarsPage />} />
           <Route path="/car-details/:carId/*" element={<CarDetailsPage />} />
+          <Route path="/favorite" element={<FavoritePage />} />
+
         </Routes>
       </Suspense>
     </StyledAppContainer>
