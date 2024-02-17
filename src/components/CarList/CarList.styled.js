@@ -1,19 +1,31 @@
 import styled from "styled-components";
 
-export const Ul = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  margin-bottom: 30px;
+export const Container = styled.div`
+  max-width: 1216px;
+  margin: 40px auto;
+  padding: 0 16px;
+`;
 
-  @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px 14px;
-    margin-bottom: 50px;
-  }
-  @media screen and (min-width: 1440px) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px 29px;
-    margin-bottom: 100px;
-  }
+export const SectionCatalog = styled.section`
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+column-gap: 29px;
+row-gap: 50px;
+margin-bottom: 100px;
+`;
+
+export const Button = styled.button`
+display: block;
+margin: 0 auto;
+color: var(--primary-color-blue);
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+text-decoration-line: underline;
+background-color: transparent;
+border: none;
+&:hover {
+  color: var(--active-color-blue);
+}
 `;

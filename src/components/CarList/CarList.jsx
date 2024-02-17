@@ -1,31 +1,91 @@
-import React from 'react';
-import CarListItem from '../CarListItem/CarListItem';
-import { Ul } from './CarList.styled';
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-const CarList = ({ cars, setFavorite }) => {
-  const showCars = Array.isArray(cars) && cars.length;
+import {
+  Container,
+  SectionCatalog,
+  Button
+} from './CarList.styled';
+
+
+import { getAllCarsThunk } from "../../redux/cars/thunk";
+import { incPage } from "../../redux/cars/slice";
+import { resetCars } from "../../redux/cars/slice";
+
+
+
+import CarItem from "../CarItem/CarItem";
+import SearchCarForm from "../SearchCarForm/SearchCarForm";
+
+import Loader from "../Loader";
+
+const Catalog = () => {
+  const [searchParams] = useSearchParams();
+
+  const make = searchParams.get("make");
+  const price = searchParams.get("price");
+  const from = searchParams.get("from");
+  const to = searchParams.get("to");
+  const selectAllCars = (state) => state.cars.items;
+ 
+    const selectPage = (state) => state.cars.page;
+   
+   const selectLoading = (state) => state.cars.isLoading;
+
+  const cars = useSelector(selectAllCars);
+  const isLoading = useSelector(selectLoading);
+  const page = useSelector(selectPage);
+
+  const [filteredCars, setFilteredCars] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCarsThunk({ page, make }));
+  }, [dispatch, page, make]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCars());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    let tempCars = [...cars];
+
+    if (price) tempCars = tempCars.filter((car) => car.rentalPrice <= price);
+
+    if (from && to)
+      tempCars = tempCars.filter(
+        (car) => car.mileage >= from && car.mileage <= to
+      );
+
+    setFilteredCars(tempCars);
+  }, [cars, price, from, to]);
+
+  const handleLoadMore = () => {
+    dispatch(incPage());
+  };
 
   return (
-    <Ul>
-      {showCars &&
-        cars.map(car => (
-          <CarListItem
-            key={car.id}
-            car={car}
-            img={car.img}
-            make={car.make}
-            model={car.model}
-            year={car.year}
-            rentalPrice={car.rentalPrice}
-            address={car.address}
-            rentalCompany={car.rentalCompany}
-            type={car.type}
-            id={car.id}
-            functionalities={car.functionalities}
-          />
-        ))}
-    </Ul>
+    <>
+      <Container>
+        <SearchCarForm />
+        <SectionCatalog>
+          {filteredCars &&
+            filteredCars.map((car) => {
+              return <CarItem key={car.id} data={car} />;
+            })}
+        </SectionCatalog>
+        {page < 3 && !make && (
+          <Button type="button" onClick={handleLoadMore}>
+            Load more
+          </Button>
+        )}
+      </Container>
+      {isLoading && <Loader />}
+    </>
   );
 };
 
-export default CarList;
+export default Catalog;

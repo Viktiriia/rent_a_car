@@ -1,21 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-import { App } from 'App';
+// import "./modern-normalize.css";
+// import "./fonts.css";
+import "./index.css";
 
-import { store } from 'redux/store';
+import { persistor, store } from "./redux/store.js";
+import App from "./App.jsx";
 
-import 'react-toastify/dist/ReactToastify.css';
-import './index.css';
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter basename='/rent_a_car'>
     <Provider store={store}>
-      <App />
-      <ToastContainer />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </BrowserRouter>
+  
 );
