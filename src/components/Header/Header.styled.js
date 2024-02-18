@@ -4,12 +4,15 @@ import { NavLink } from "react-router-dom";
 export const Headers = styled.header`
   background-image: radial-gradient(ellipse, #101cb9, #14c3cf);
   height: 60px;
+  
  
 `;
 
-export const Nav = styled.nav`
+export const Div = styled.div`
   height: 60px;
-
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 0 16px;
 `;
 
 export const Menu = styled.ul`

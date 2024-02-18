@@ -1,40 +1,36 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  Wrapper, Item, ListWrapper, List,
-  Button
-} from './Dropdown.styled';
+import { useEffect, useRef, useState } from 'react';
+import { Wrapper, Item, ListWrapper, List, Button } from './Dropdown.styled';
 
-
-import dropdownIcon from "../../images/dropdown-icon.svg";
+import dropdownIcon from '../../images/dropdown-icon.svg';
 
 const ListDropdown = ({ items, onSelect, onClose }) => {
   const listRef = useRef(null);
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
+    const handleKeyDown = event => {
+      if (event.code === 'Escape') {
         onClose(false);
       }
     };
 
-    const handleClose = (event) => {
+    const handleClose = event => {
       if (listRef.current && !listRef.current.contains(event.target)) {
         onClose(false);
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
+    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClose);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClose);
+      window.removeEventListener('keydown', handleKeyDown);
+      document.addEventListener('mousedown', handleClose);
     };
   }, [onClose]);
 
   return (
     <ListWrapper ref={listRef}>
       <List>
-        {items.map((item) => {
+        {items.map(item => {
           return (
             <Item key={item} onClick={() => onSelect(item)}>
               {item}
@@ -50,7 +46,7 @@ const Dropdown = ({ items = [], defaultSelect, onSelect }) => {
   const [isOpenList, setIsOpenList] = useState(false);
   const [selectText, setSelectText] = useState(defaultSelect);
 
-  const handleSelect = (item) => {
+  const handleSelect = item => {
     onSelect(item);
     setSelectText(item);
     setIsOpenList(false);

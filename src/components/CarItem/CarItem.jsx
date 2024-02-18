@@ -15,7 +15,7 @@ import {
 
 import { useDispatch, useSelector} from "react-redux";
 import { addCar, deleteCar } from "../../redux/favorites/slice";
-import { selectAllFavoritesCars } from "../../redux/favorites/selectors";
+
 import Modal from "../Modal/Modal";
 
 const CarItem = ({ data }) => {
@@ -40,7 +40,7 @@ const CarItem = ({ data }) => {
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
-
+  const selectAllFavoritesCars = (state) => state.favorites.items;
   const favoritesCars = useSelector(selectAllFavoritesCars);
 
   useEffect(() => {

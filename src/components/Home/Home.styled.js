@@ -25,12 +25,11 @@ export const Button = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+
   width: 300px;
   border-radius: 8px;
   bottom: 100px;
-  left: 50%;
+  left: 80%;
   transform: translateX(-50%);
   color: #ffffff;
   box-shadow: 3px 3px rgba(142, 141, 248, 0.473), -1em 0 .6em rgb(58, 162, 223);

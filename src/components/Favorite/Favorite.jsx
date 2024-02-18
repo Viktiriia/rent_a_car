@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import {
-  Container,
-  Catalog
-} from './Favorite.styled';
+import { Container, Catalog } from './Favorite.styled';
 
-import Card from "../CarItem/CarItem";
-import { selectAllFavoritesCars } from "../../redux/favorites/selectors";
+import Card from '../CarItem/CarItem';
+
+export const selectAllFavoritesCars = (state) => state.favorites.items;
 
 const Favorite = () => {
   const cars = useSelector(selectAllFavoritesCars);
@@ -16,7 +14,7 @@ const Favorite = () => {
       <Container>
         <Catalog>
           {cars.length &&
-            cars.map((car) => {
+            cars.map(car => {
               return <Card key={car.id} data={car} />;
             })}
         </Catalog>

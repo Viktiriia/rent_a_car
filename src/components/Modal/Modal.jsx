@@ -132,7 +132,7 @@ const Modal = ({ onClose, data }) => {
               <Span>{new Intl.NumberFormat('en-US').format(mileage)}</Span>
             </ConditionsItem>
             <ConditionsItem>
-              Price: <Span>{rentalPrice}$</Span>
+              Price: <Span>{rentalPrice}</Span>
             </ConditionsItem>
           </ConditionsWrapper>
           <Link href="tel:+380730000000">

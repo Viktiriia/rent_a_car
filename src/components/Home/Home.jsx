@@ -1,5 +1,4 @@
-import {Wrapper, Title, Button} from "./Home.styled";
-
+import { Wrapper, Title, Button } from './Home.styled';
 
 const Welcome = () => {
   return (

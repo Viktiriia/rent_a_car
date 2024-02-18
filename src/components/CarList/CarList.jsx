@@ -1,37 +1,30 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Container,
-  SectionCatalog,
-  Button
-} from './CarList.styled';
+import { Container, SectionCatalog, Button } from './CarList.styled';
 
+import { getAllCarsThunk } from '../../redux/cars/thunk';
+import { incPage } from '../../redux/cars/slice';
+import { resetCars } from '../../redux/cars/slice';
 
-import { getAllCarsThunk } from "../../redux/cars/thunk";
-import { incPage } from "../../redux/cars/slice";
-import { resetCars } from "../../redux/cars/slice";
+import CarItem from '../CarItem/CarItem';
+import SearchCarForm from '../SearchCarForm/SearchCarForm';
 
+import Loader from '../Loader';
 
-
-import CarItem from "../CarItem/CarItem";
-import SearchCarForm from "../SearchCarForm/SearchCarForm";
-
-import Loader from "../Loader";
-
-const Catalog = () => {
+const CarList = () => {
   const [searchParams] = useSearchParams();
 
-  const make = searchParams.get("make");
-  const price = searchParams.get("price");
-  const from = searchParams.get("from");
-  const to = searchParams.get("to");
-  const selectAllCars = (state) => state.cars.items;
- 
-    const selectPage = (state) => state.cars.page;
-   
-   const selectLoading = (state) => state.cars.isLoading;
+  const make = searchParams.get('make');
+  const price = searchParams.get('price');
+  const from = searchParams.get('from');
+  const to = searchParams.get('to');
+  const selectAllCars = state => state.cars.items;
+
+  const selectPage = state => state.cars.page;
+
+  const selectLoading = state => state.cars.isLoading;
 
   const cars = useSelector(selectAllCars);
   const isLoading = useSelector(selectLoading);
@@ -53,11 +46,11 @@ const Catalog = () => {
   useEffect(() => {
     let tempCars = [...cars];
 
-    if (price) tempCars = tempCars.filter((car) => car.rentalPrice <= price);
+    if (price) tempCars = tempCars.filter(car => car.rentalPrice <= price);
 
     if (from && to)
       tempCars = tempCars.filter(
-        (car) => car.mileage >= from && car.mileage <= to
+        car => car.mileage >= from && car.mileage <= to
       );
 
     setFilteredCars(tempCars);
@@ -73,7 +66,7 @@ const Catalog = () => {
         <SearchCarForm />
         <SectionCatalog>
           {filteredCars &&
-            filteredCars.map((car) => {
+            filteredCars.map(car => {
               return <CarItem key={car.id} data={car} />;
             })}
         </SectionCatalog>
@@ -88,4 +81,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default CarList;
